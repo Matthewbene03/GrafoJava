@@ -1,14 +1,11 @@
-
-
-public class Grafo {
-
+public abstract class Grafo {
     private Integer numVertices;
     private Integer numArestas;
     //private boolean statusGrafo;
     private Integer[][] matrizAdjacencia = null;
 
-    public Grafo(Integer numVertices){
-        this.matrizAdjacencia = this.inicializaGrafo(numVertices);
+    public Grafo (Integer numVertice){
+        this.matrizAdjacencia = this.inicializaGrafo(numVertice);
         this.numArestas = 0;
     }
 
@@ -44,38 +41,6 @@ public class Grafo {
         }
     }
 
-    public boolean insertAresta(int vertice1, int vertice2){
-        if (this.matrizAdjacencia == null) return false;
-        if (vertice1 < 0 || vertice2 < 0 || vertice1 == vertice2 || vertice1>=this.numVertices || vertice2 >= this.numVertices) return false;
-        if(this.matrizAdjacencia[vertice1][vertice2] == 0){
-            this.matrizAdjacencia[vertice1][vertice2] = 1;
-            this.matrizAdjacencia[vertice2][vertice1] = 1;
-            this.numArestas++;
-        }
-        return true;
-    }
-
-    public boolean deletedAresta(int vertice1, int vertice2){
-        if(this.matrizAdjacencia == null) return false;
-        if (vertice1 < 0 || vertice2 < 0 || vertice1 == vertice2 || vertice1>=this.numVertices || vertice2 >= this.numVertices) return false;
-        if (this.matrizAdjacencia[vertice1][vertice2] == 1) {
-            this.matrizAdjacencia[vertice1][vertice2] = 0;
-            this.matrizAdjacencia[vertice2][vertice1] = 0;
-            this.numArestas--;
-        }
-        return true;
-    }
-
-    public boolean existeAresta(int vertice1, int vertice2){
-        if(this.matrizAdjacencia == null) return false;
-        if (vertice1 < 0 || vertice2 < 0 || vertice1 == vertice2 || vertice1>=this.numVertices || vertice2 >= this.numVertices) return false;
-        if (this.matrizAdjacencia[vertice1][vertice2] == 1) {
-            return true;
-        } else{
-            return false;
-        }
-    }
-
     public boolean existeVizinho(int vertice){
         if(this.matrizAdjacencia == null) return false;
         if (vertice < 0 || vertice>=this.numVertices) return false;
@@ -87,24 +52,24 @@ public class Grafo {
         }
     }
 
-    public int grauVertice(int vertice){
-        if(this.matrizAdjacencia == null) return 0;
-        if (vertice < 0 || vertice>=this.numVertices) return 0;
-        int grau = 0;
-        for(int j = 0; j<this.numVertices; j++){
-            if (this.matrizAdjacencia[vertice][j] == 1) {
-                grau++;
-            }
-        }
-        return grau;
-    }
-
     public int getNumeroVertice(){
         return this.numVertices;
     }
 
     public int getNumeroArestas(){
         return this.numArestas;
+    }
+
+    protected  void incrNumArestas (){
+        this.numArestas++;
+    }
+
+    protected void decrNumArestas(){
+        this.numArestas--;
+    }
+
+    protected Integer[][] getMatriz(){
+        return this.matrizAdjacencia;
     }
 
     public void clearGrafo (){
@@ -114,5 +79,13 @@ public class Grafo {
             this.numArestas = 0;
         }
     }
+
+    public abstract int grauVertice (int vertice);
+
+    public abstract boolean insertAresta(int vertice1, int vertice2);
+
+    public abstract boolean deletedAresta(int vertice1, int vertice2);
+
+    public abstract boolean existeAresta(int vertice1, int vertice2);
 
 }
