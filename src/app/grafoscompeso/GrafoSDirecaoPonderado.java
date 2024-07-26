@@ -1,3 +1,4 @@
+package app.grafoscompeso;
 public class GrafoSDirecaoPonderado extends GrafoPonderado{
 
     public GrafoSDirecaoPonderado (Integer numVertice){

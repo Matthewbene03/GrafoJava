@@ -1,3 +1,4 @@
+package app.grafossempeso;
 
 
 public class GrafoCDirecao extends GrafoNotPeso{

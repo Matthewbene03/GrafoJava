@@ -1,6 +1,10 @@
+package app;
+
+import app.grafoscompeso.GrafoCDirecaoPonderado;
+
 public class App {
     public static void main(String[] args) throws Exception {
-        GrafoPonderado grafo = new GrafoCDirecaoPonderado(5);
+        GrafoCDirecaoPonderado grafo = new GrafoCDirecaoPonderado(5);
         grafo.insertAresta(0, 1, 2);
         grafo.insertAresta(1, 2, 4);
         grafo.insertAresta(2, 0,12);
