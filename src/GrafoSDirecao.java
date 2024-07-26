@@ -1,11 +1,12 @@
 
 
-public class GrafoSDirecao extends Grafo{
+public class GrafoSDirecao extends GrafoNotPeso{
 
     public GrafoSDirecao(Integer numVertices){
         super(numVertices);
     }
 
+    @Override
     public boolean insertAresta(int vertice1, int vertice2){
         if (this.getMatriz() == null) return false;
         if (vertice1 < 0 || vertice2 < 0 || vertice1 == vertice2 || vertice1>=this.getNumeroVertice() || vertice2 >= this.getNumeroVertice()) return false;
@@ -17,6 +18,7 @@ public class GrafoSDirecao extends Grafo{
         return true;
     }
 
+    @Override
     public boolean deletedAresta(int vertice1, int vertice2){
         if(this.getMatriz() == null) return false;
         if (vertice1 < 0 || vertice2 < 0 || vertice1 == vertice2 || vertice1>=this.getNumeroVertice() || vertice2 >= this.getNumeroVertice()) return false;
@@ -28,6 +30,7 @@ public class GrafoSDirecao extends Grafo{
         return true;
     }
 
+    @Override
     public boolean existeAresta(int vertice1, int vertice2){
         if(this.getMatriz() == null) return false;
         if (vertice1 < 0 || vertice2 < 0 || vertice1 == vertice2 || vertice1>=this.getNumeroVertice() || vertice2 >= this.getNumeroVertice()) return false;
@@ -38,6 +41,7 @@ public class GrafoSDirecao extends Grafo{
         }
     }
 
+    @Override
     public int grauVertice(int vertice){
         if(this.getMatriz() == null) return 0;
         if (vertice < 0 || vertice>=this.getNumeroVertice()) return 0;

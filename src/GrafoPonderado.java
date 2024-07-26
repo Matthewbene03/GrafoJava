@@ -1,23 +1,25 @@
-public abstract class Grafo {
+
+public abstract class GrafoPonderado {
+
     private Integer numVertices;
     private Integer numArestas;
-    //private boolean statusGrafo;
     private Integer[][] matrizAdjacencia = null;
+    private final Integer numInvalido = -1;
 
-    public Grafo (Integer numVertice){
+    public GrafoPonderado (Integer numVertice){
         this.matrizAdjacencia = this.inicializaGrafo(numVertice);
         this.numArestas = 0;
     }
 
-    private Integer[][] inicializaGrafo(Integer numVertices){
+    private Integer[][]  inicializaGrafo(Integer numVertices){
         if(numVertices < 1) return null;
 
-        this.numVertices = numVertices;
         Integer[][] matrizAux = new Integer[numVertices][numVertices];
+        this.numVertices = numVertices;
         for (int i = 0; i < numVertices; i++) {
             for (int j = 0; j < numVertices; j++) {
                 //System.out.println("["+i+"]["+j+"]");
-                matrizAux[i][j] = 0;
+                matrizAux[i][j] = numInvalido;
             }
         }
         return matrizAux;
@@ -34,7 +36,8 @@ public abstract class Grafo {
             for (int i = 0; i < this.numVertices; i++) {
                 System.out.print("v"+i);
                 for (int j = 0; j < this.numVertices; j++) {
-                    System.out.print("\t" + this.matrizAdjacencia[i][j]);
+                    if(this.matrizAdjacencia[i][j] == this.numInvalido) System.out.print("\t");
+                    else System.out.print("\t" + this.matrizAdjacencia[i][j]);
                 }
                 System.out.println("");
             }
@@ -72,6 +75,10 @@ public abstract class Grafo {
         return this.matrizAdjacencia;
     }
 
+    public Integer getNumInvalido(){
+        return this.numInvalido;
+    }
+
     public void clearGrafo (){
         if(this.matrizAdjacencia != null) {
             this.matrizAdjacencia = null;
@@ -81,11 +88,7 @@ public abstract class Grafo {
     }
 
     public abstract int grauVertice (int vertice);
-
-    public abstract boolean insertAresta(int vertice1, int vertice2);
-
+    public abstract boolean insertAresta(int vertice1, int vertice2, int peso);
     public abstract boolean deletedAresta(int vertice1, int vertice2);
-
     public abstract boolean existeAresta(int vertice1, int vertice2);
-
 }

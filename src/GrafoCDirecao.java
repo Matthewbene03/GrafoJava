@@ -1,4 +1,6 @@
-public class GrafoCDirecao extends Grafo{
+
+
+public class GrafoCDirecao extends GrafoNotPeso{
 
     public GrafoCDirecao(Integer numVertices){
         super(numVertices);
