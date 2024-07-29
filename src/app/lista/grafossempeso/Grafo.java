@@ -37,7 +37,7 @@ public abstract class Grafo {
             for (int i = 0; i < this.numVertices; i++) {
                 System.out.print("["+i+"]->");
                 for (int j = 0; j < listaAdjacencia.get(i).size(); j++) {
-                    System.out.print("\t" + this.listaAdjacencia.get(i).get(j) + " ->");
+                    System.out.print("\t[" + this.listaAdjacencia.get(i).get(j) + "] ->");
                 }
                 System.out.print("\t null");
                 System.out.println("");
