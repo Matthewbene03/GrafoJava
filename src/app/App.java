@@ -1,11 +1,11 @@
 package app;
 
 import app.lista.grafoscompeso.Grafo;
-import app.lista.grafoscompeso.GrafoNaoDirecionado;
+import app.lista.grafoscompeso.GrafoDirecionado;
 
 public class App {
     public static void main(String[] args) throws Exception {
-    	Grafo grafo = new GrafoNaoDirecionado(5);
+    	Grafo grafo = new GrafoDirecionado(5);
     	grafo.insertAresta(0, 1, 2);
     	grafo.insertAresta(1, 2, 4);
     	grafo.insertAresta(2, 0, 12);
@@ -35,12 +35,12 @@ public class App {
   
         System.out.println("Numero de vertice: " + grafo.getNumVertices());
         System.out.println("Numero de arestas: " + grafo.getNumArestas());
-////        
-//        System.out.println("Existe vizinhos 0: " + grafo.existeVizinho(0));
-//        System.out.println("Existe vizinhos 1: " + grafo.existeVizinho(1));
-//        System.out.println("Existe vizinhos 2: " + grafo.existeVizinho(2));
-//        System.out.println("Existe vizinhos 3: " + grafo.existeVizinho(3));
-//        System.out.println("Existe vizinhos 4: " + grafo.existeVizinho(4));
+//       
+        System.out.println("Existe vizinhos 0: " + grafo.existeVizinho(0));
+        System.out.println("Existe vizinhos 1: " + grafo.existeVizinho(1));
+        System.out.println("Existe vizinhos 2: " + grafo.existeVizinho(2));
+        System.out.println("Existe vizinhos 3: " + grafo.existeVizinho(3));
+        System.out.println("Existe vizinhos 4: " + grafo.existeVizinho(4));
 //        
         System.out.println("Grau do vertice 0: " + grafo.grauVertice(0));
         System.out.println("Grau do vertice 1: " + grafo.grauVertice(1));
