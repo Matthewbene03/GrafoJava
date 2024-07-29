@@ -1,13 +1,13 @@
-package app.grafoscompeso;
+package app.matriz.grafossempeso;
 
-public abstract class GrafoPonderado {
+public abstract class GrafoNotPeso {
 
     private Integer numVertices;
     private Integer numArestas;
+    //private boolean statusGrafo;
     private Integer[][] matrizAdjacencia = null;
-    private final Integer numInvalido = -1;
 
-    public GrafoPonderado (Integer numVertice){
+    public GrafoNotPeso (Integer numVertice){
         this.matrizAdjacencia = this.inicializaGrafo(numVertice);
         this.numArestas = 0;
     }
@@ -20,10 +20,24 @@ public abstract class GrafoPonderado {
         for (int i = 0; i < numVertices; i++) {
             for (int j = 0; j < numVertices; j++) {
                 //System.out.println("["+i+"]["+j+"]");
-                matrizAux[i][j] = numInvalido;
+                matrizAux[i][j] = 0;
             }
         }
         return matrizAux;
+    }
+
+    public boolean inicializaGrafo (Integer numVertices, Integer numInvalido){
+        if(numVertices < 1) return false;
+
+        this.numVertices = numVertices;
+        Integer[][] matrizAux = new Integer[numVertices][numVertices];
+        for (int i = 0; i < numVertices; i++) {
+            for (int j = 0; j < numVertices; j++) {
+                //System.out.println("["+i+"]["+j+"]");
+                matrizAux[i][j] = numInvalido;
+            }
+        }
+        return true;
     }
 
     public void imprimeGrafo(){
@@ -37,8 +51,7 @@ public abstract class GrafoPonderado {
             for (int i = 0; i < this.numVertices; i++) {
                 System.out.print("v"+i);
                 for (int j = 0; j < this.numVertices; j++) {
-                    if(this.matrizAdjacencia[i][j] == this.numInvalido) System.out.print("\t");
-                    else System.out.print("\t" + this.matrizAdjacencia[i][j]);
+                    System.out.print("\t" + this.matrizAdjacencia[i][j]);
                 }
                 System.out.println("");
             }
@@ -76,10 +89,6 @@ public abstract class GrafoPonderado {
         return this.matrizAdjacencia;
     }
 
-    public Integer getNumInvalido(){
-        return this.numInvalido;
-    }
-
     public void clearGrafo (){
         if(this.matrizAdjacencia != null) {
             this.matrizAdjacencia = null;
@@ -89,7 +98,7 @@ public abstract class GrafoPonderado {
     }
 
     public abstract int grauVertice (int vertice);
-    public abstract boolean insertAresta(int vertice1, int vertice2, int peso);
+    public abstract boolean insertAresta(int vertice1, int vertice2);
     public abstract boolean deletedAresta(int vertice1, int vertice2);
     public abstract boolean existeAresta(int vertice1, int vertice2);
 }

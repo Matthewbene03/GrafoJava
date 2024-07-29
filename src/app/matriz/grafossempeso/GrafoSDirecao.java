@@ -1,4 +1,4 @@
-package app.grafossempeso;
+package app.matriz.grafossempeso;
 
 
 public class GrafoSDirecao extends GrafoNotPeso{

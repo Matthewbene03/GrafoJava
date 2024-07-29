@@ -1,4 +1,4 @@
-package app.grafoscompeso;
+package app.matriz.grafoscompeso;
 
 
 public class GrafoCDirecaoPonderado extends GrafoPonderado{
