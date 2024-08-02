@@ -1,11 +1,13 @@
 package app.matriz.grafossempeso;
 
+import app.Cor;
+
 public abstract class GrafoNotPeso {
 
     private Integer numVertices;
     private Integer numArestas;
-    //private boolean statusGrafo;
     private Integer[][] matrizAdjacencia = null;
+    private Integer tempo = 0;
 
     public GrafoNotPeso (Integer numVertice){
         this.matrizAdjacencia = this.inicializaGrafo(numVertice);
@@ -69,6 +71,39 @@ public abstract class GrafoNotPeso {
         }
     }
 
+    public void DFS() {
+    	Cor[] cor = new Cor[this.numVertices];
+    	Integer[] pi = new Integer[this.numVertices];
+    	
+    	for(int i = 0; i < this.numVertices; i++) {
+    		cor[i] = Cor.BRANCO;
+    		pi[i] = null;
+    	}
+    	
+    	for (int u = 0; u < this.numVertices; u++) {// O "u" significa a nossa linha da matriz (u,v)
+    		if(cor[u] == Cor.BRANCO) {
+    			DFSVisit(u, cor, pi);
+    			System.out.println(u);
+    		}
+    	}
+    }
+    
+    private void DFSVisit(Integer u, Cor[] cor, Integer[] pi){
+    	cor[u] = Cor.CINZA;
+    	this.tempo +=1;
+   
+    	for(int v = 0; v < this.numVertices; v++) {// O "v" significa cada coluna da linha u da matriz (u,v)
+    		if(this.matrizAdjacencia[u][v] == 1) {
+    			if (cor[v] == Cor.BRANCO) {
+    				pi[v] = u;
+    				DFSVisit(v, cor, pi);
+        			System.out.println(v);
+    			}
+    		}
+    	}
+    	cor[u] = Cor.PRETO;
+    }
+    
     public int getNumeroVertice(){
         return this.numVertices;
     }
