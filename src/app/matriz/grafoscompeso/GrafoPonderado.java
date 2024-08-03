@@ -7,6 +7,7 @@ public abstract class GrafoPonderado {
     private Integer numVertices;
     private Integer numArestas;
     private Integer[][] matrizAdjacencia = null;
+    private Integer[] peso;
     private final Integer numInvalido = -1;
     private Integer tempo = 0;
 
@@ -22,9 +23,9 @@ public abstract class GrafoPonderado {
         this.numVertices = numVertices;
         for (int i = 0; i < numVertices; i++) {
             for (int j = 0; j < numVertices; j++) {
-                //System.out.println("["+i+"]["+j+"]");
                 matrizAux[i][j] = numInvalido;
             }
+            peso[i] = -1;
         }
         return matrizAux;
     }
@@ -57,6 +58,29 @@ public abstract class GrafoPonderado {
         } else{
             return false;
         }
+    }
+    
+    public boolean listaAdjVazia(int u) {
+    	for(int v = 0; v < numVertices; v++) {
+    		if(matrizAdjacencia[u][v] != numInvalido) return false;
+    	}
+    	return true;
+    }
+    
+    public Aresta primeiroListaAdj(int v) {
+    	this.peso[v] = -1;
+    	return this.proxAdj (v);
+    }
+    
+    public Aresta proxAdj (Integer v) {
+    	this.peso[v]++;
+    	
+    	while ((this.peso[v] < numVertices) && this.matrizAdjacencia[v][peso[v]] == numInvalido) {
+    		peso[v]++;
+    	}
+    	
+    	if (peso[v] == numVertices) return null;
+    	else return new Aresta(v, peso[v], matrizAdjacencia[v][peso[v]]);
     }
 
     public void DFS() {
